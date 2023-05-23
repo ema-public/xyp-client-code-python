@@ -1,7 +1,7 @@
 # xyp-client-code-python
 Төрийн мэдээлэл солилцооны ХУР системийн хэрэглэгчийн жишээ кодыг Python хэл дээр бэлтгэв.
 
-## Шаардлага 
+## Шаардлага
     Python 3.9.13
 
     cat requirements.txt
@@ -38,6 +38,7 @@ WEBSOCKETURL="ws://127.0.0.1:59001"
 ```
 [mykey.key](./mykey.key) файлд ҮДТ өөс олгогдсон openVPN key-ийн мэдээллийг хуулна.
 
+ESIGN клиент програм (Win 7, 8, 10 64 бит) [татах](https://ra.datacenter.gov.mn/software/installer).
 ## Сервис дуудах
 Иргэнийг тоон гарын үсгээр баталгаажуулан дуудахдаа [DigitalSignatureApprove.py](./DigitalSignatureApprove.py) кодыг ажиллуулна.
 ```bash
