@@ -3,6 +3,15 @@ from Crypto.Hash import SHA256
 from Crypto.Signature import PKCS1_v1_5
 from Crypto.PublicKey import RSA 
 
+"""
+ХУР системийг ашиглаж буй байгууллага өөрийн тоон гарын үсгийг зурах модуль
+@param KeyPath ҮДТ-өөс олгогдсон key мэдээллийг агуулж буй .key файлын зам
+@param accessToken ҮДТ-өөс олгогдсон аccesstoken ийн мэдээлэл
+@param timestamp timestamp мэдээлэл
+
+@author unenbat
+@since 2023-05-23
+"""
 class XypSign:
     def __init__(self, KeyPath):
         self.KeyPath = KeyPath
@@ -20,7 +29,7 @@ class XypSign:
     def __buildParam(self, toBeSigned):        
         print(toBeSigned['accessToken'] + '.' + toBeSigned['timeStamp'])
         return toBeSigned['accessToken'] + '.' + toBeSigned['timeStamp']
-            
+
     def sign(self, accessToken, timestamp):
         toBeSigned = self.__toBeSigned(accessToken, timestamp)
         digest = SHA256.new()

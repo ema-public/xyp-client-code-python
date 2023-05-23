@@ -4,6 +4,13 @@ from env import REGNUM
 import time
 
 
+"""
+OTP авах амжилттай болсон тохиолдолд иргэнд ирсэн кодыг ашиглаж сервис дуудах
+@param OTPNumber иргэний утсанд ирсэн баталгаажуулах код
+
+@author unenbat
+@since 2023-05-23
+"""
 def CallXYPService(OTPNumber):
     params = {  
         'auth': {
@@ -33,6 +40,12 @@ def CallXYPService(OTPNumber):
     citizen = Service('https://xyp.gov.mn/citizen-1.5.0/ws?WSDL', str(int(time.time())) , pkey_path=KEY_PATH)
     citizen.dump('WS100101_getCitizenIDCardInfo', params)
 
+"""
+OTP код авах WS100008_registerOTPRequest сервисийг ашиглаж WS100101_getCitizenIDCardInfo сервисийг ашиглах хүсэлтийг sms-ээр явуулах
+
+@author unenbat
+@since 2023-05-23
+"""
 def OTPservice():
     params = {  
         'auth': {

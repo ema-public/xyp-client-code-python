@@ -8,6 +8,13 @@ from XypSign import XypSign
 from requests import Session
 import urllib3
 from env import ACCESS_TOKEN
+
+"""
+ХУР Төрийн Мэдээлэл Солилцооны системээс сервис дуудах 
+
+@author unenbat
+@since 2023-05-23
+"""
 class Service():
     def __init__(self, wsdl, timestamp, pkey_path=None):
         print("timestamp: ", timestamp)

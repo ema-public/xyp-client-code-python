@@ -18,16 +18,39 @@ import time
 
 timestamp = ""
 
+"""
+string мэдээллийг X509Certificate болгож хөрвүүлэх
+@param cert_base64 сертификатын мэдээлэл
+@returns {module:crypto.X509Certificate}
+
+@author unenbat
+@since 2023-05-23
+"""
 def parse_certificate(cert_base64):
     cert_bytes = base64.b64decode(cert_base64)
     cert = x509.load_der_x509_certificate(cert_bytes, default_backend())
     return cert
 
+"""
+сертификатын мэдээллээс сериал дугаарыг олж авах
+@param cert_base64
+@returns {string}
+
+@author unenbat
+@since 2023-05-23
+"""
 def get_serial_number(cert_base64):
     cert = parse_certificate(cert_base64)
     serial_number = cert.serial_number
     return serial_number.to_bytes((serial_number.bit_length() + 7) // 8, 'big').hex()
 
+"""
+esign client программаас мэдээлэл хүлээж авах, өгөгдсөн мэдээллээр ХУР-ын сервис дуудах
+@param message esign client программаас ирж буй мэдээлэл
+
+@author unenbat
+@since 2023-05-23
+"""
 def on_message(ws, message):
     sign = json.loads(message)
     params = {  
@@ -57,12 +80,19 @@ def on_message(ws, message):
         }
     citizen = Service('https://xyp.gov.mn/citizen-1.5.0/ws?WSDL', timestamp, pkey_path=KEY_PATH)
     citizen.dump('WS100101_getCitizenIDCardInfo', params)
+
 def on_error(ws, error):
     print(error)
 
 def on_close(ws):
     print("### closed ###")
 
+"""
+esign client программыг ашиглаж regnum.timestamp мэдээллийг тоон гарын үсгээр баталгаажуулах хүсэлт явуулах
+
+@author unenbat
+@since 2023-05-23
+"""
 def on_open(ws):
     def run(*args):
         dataSign = REGNUM + "." + timestamp
