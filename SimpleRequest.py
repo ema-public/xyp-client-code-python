@@ -65,6 +65,8 @@ class Service:
                 print(self.client.service[operation]())
         except Exception as e:
             print( operation, str(e))
+
 params = { 'regnum':'XX12341234'}
+
 citizen = Service(wsdlurl baina, accesstoken baina, keypath)
-citizen.dump(servicename baina, params baina)
+citizen.dump(servicename baina, params)
